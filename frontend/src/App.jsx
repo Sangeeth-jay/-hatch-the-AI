@@ -1,11 +1,13 @@
-import LogIn from './components/LogIn'
+// import LogIn from './components/LogIn'
 import './App.css'
+import Intro from './components/Intro'
 
 function App() {
 
   return (
     <>
-      <LogIn />
+      {/* <LogIn /> */}
+      <Intro />
     </>
   )
 }
