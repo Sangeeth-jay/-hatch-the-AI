@@ -23,7 +23,7 @@ const LogIn = () => {
             placeholder="enter password"
             className="w-3/4 h-12 bg-[#383A40] text-white rounded-xl  text-center focus:outline-none focus:ring-1 focus:ring-[#515359]"
           />
-          <button className="w-3/4 h-12 bg-[#55B500] text-white font-bold mt-4 rounded-xl hover:bg-[#5e8e34] duration-200 ease-in-out active:scale-95">
+          <button className="w-3/4 h-12 bg-[#55B500] text-white font-bold mt-4 rounded-xl hover:bg-[#8ad449] duration-200 ease-in-out active:scale-95">
             Log In
           </button>
           </div>

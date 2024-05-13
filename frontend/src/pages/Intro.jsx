@@ -1,7 +1,19 @@
+
 import { motion } from "framer-motion";
+
+
 import img from "../assets/logo.png";
 
 const Intro = () => {
+
+  
+
+  setTimeout(() => {
+    window.location.href = "/login";
+  }, 6000);
+
+
+
   return (
     <>
       <motion.div className="flex flex-col  justify-center items-center h-screen bg-[#383A40]">
