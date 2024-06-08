@@ -1,9 +1,15 @@
+import ChatSpace from "../components/dashboard/ChatSpace";
+import SideBar from "../components/dashboard/SideBar";
+
 const Dashboard = () => {
   return (
     <>
-      <div className="flex justify-center items-center h-screen bg-[#383A40]">
-        Dashboard
-      </div>
+      <main className="flex bg-[#2E3035]">
+
+          <SideBar />
+          <ChatSpace/>
+
+      </main>
     </>
   );
 };
