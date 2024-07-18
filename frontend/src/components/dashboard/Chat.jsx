@@ -1,7 +1,7 @@
 const Chat = () => {
   return (
     <>
-      <div className="px-56 h-5/6 overflow-y-scroll scrollbar-thin scrollbar-thumb-rounded-full scrollbar-thumb-slate-700 scrollbar-track-slate-300 pt-12">
+      <div className="px-56 h-5/6 overflow-y-scroll scrollbar scrollbar-thumb-[#26262685] hover:scrollbar-thumb-[#646464] ">
         <p className="text-gray-400">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi aperiam,
           ipsa in quaerat optio recusandae ullam nesciunt? Quasi animi nostrum

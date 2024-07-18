@@ -40,7 +40,7 @@ const SideBar = () => {
             </div>
           </div>
 
-          <div className="h-2/4 flex flex-col gap-1 py-2 px-1 overflow-y-scroll scrollbar-thin scrollbar-thumb-rounded-full scrollbar-thumb-slate-700 scrollbar-track-slate-300">
+          <div className="h-2/4 flex flex-col gap-1 py-2 px-1 overflow-y-scroll scrollbar scrollbar-thumb-[#2e303574] hover:scrollbar-thumb-[#393a3c]">
             <ChatHistry tit={"day 01"} />
             <ChatHistry tit={"day 02"} />
             <ChatHistry tit={"day 03"} />
