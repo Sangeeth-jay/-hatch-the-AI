@@ -1,11 +1,10 @@
 "use client";
 import {
-  CalculatorIcon,
-  ArrowUpIcon,
-  BarChart3Icon,
-  FileTextIcon,
-  LineChartIcon,
-  BookOpenText,
+  HeartHandshakeIcon,
+  SmileIcon,
+  StethoscopeIcon,
+  SunIcon,
+  SendHorizonal,
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Button } from "./button";
@@ -16,28 +15,20 @@ import { cn } from "@/lib/utils";
 
 const prompts = [
   {
-    icon: <CalculatorIcon className="size-6" strokeWidth={1.8} />,
-    text: "Generate the monthly income statement",
+    icon: <HeartHandshakeIcon className="size-6" strokeWidth={1.8} />,
+    text: "Suggest some stress relief exercises",
   },
   {
-    icon: <ArrowUpIcon className="size-6" strokeWidth={1.8} />,
-    text: "Provide a 12-month cash flow forecast",
+    icon: <SunIcon className="size-6" strokeWidth={1.8} />,
+    text: "Share a few daily wellness tips",
   },
   {
-    icon: <BarChart3Icon className="size-6" strokeWidth={1.8} />,
-    text: "Create a real time financial dashboard",
+    icon: <SmileIcon className="size-6" strokeWidth={1.8} />,
+    text: "Give me positive affirmations",
   },
   {
-    icon: <FileTextIcon className="size-6" strokeWidth={1.8} />,
-    text: "Book a journal entry",
-  },
-  {
-    icon: <BookOpenText className="size-6" strokeWidth={1.8} />,
-    text: "Write a short story about an ...",
-  },
-  {
-    icon: <LineChartIcon className="size-6" strokeWidth={1.8} />,
-    text: "Provide a 12-month cash flow forecast",
+    icon: <StethoscopeIcon className="size-6" strokeWidth={1.8} />,
+    text: "Provide general advice for better sleep",
   },
 ];
 
@@ -187,16 +178,18 @@ const Chatbot = () => {
               </motion.div>
             ))}
 
-            <div 
-              ref={messageEndRef}
-            />
+            <div ref={messageEndRef} />
           </motion.div>
         )}
       </div>
       {/*chat box */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0, position: hasStartedChat ? "fixed" : "relative" }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          position: hasStartedChat ? "fixed" : "relative",
+        }}
         transition={{ duration: 0.2 }}
         className="w-full bg-gradient-to-t from-white via-white to-transparent pb-4 pt-6 bottom-0 mt-auto"
       >
@@ -230,7 +223,7 @@ const Chatbot = () => {
               size="icon"
               className="rounded-full shrink-0 mb-0.5 bg-foreground"
             >
-              <ArrowUpIcon className="size-6" strokeWidth={1.8} />
+              <SendHorizonal className="size-8" strokeWidth={2} />
             </Button>
           </motion.div>
         </div>
