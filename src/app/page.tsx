@@ -1,11 +1,11 @@
-import Chatbot from "@/components/ui/chat-box";
+import Login from "./(auth)/login/page";
 
 export default function Home() {
   return (
     <>
       <main className="w-full h-dvh bg-background">
         <div className="max-w-4xl mx-auto h-full">
-          <Chatbot/>
+          <Login/>
         </div>
       </main>
     </>
