@@ -45,17 +45,19 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: #202120;
   --foreground: oklch(0.145 0 0);
+  --chat-user: #AADA80;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: #303131;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
+  --muted-2: #3E3F3F;
   --muted-foreground: oklch(0.556 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
@@ -76,6 +78,15 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --cgreen-1:#55B500;
+  --cgreen-2:#449100;
+  --cgreen-3:#336600;
+  --cgreen-4:#224400;
+  --cgreen-5: #66BC1A;
+  --cgreen-6: #88CB4D;
+  --cgreen-7: #AADA80;
+  --cgreen-8: #CCE3B0;
+  --cgreen-9: #E4F0DE;
 }
 
 .dark {

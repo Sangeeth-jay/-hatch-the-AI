@@ -4,10 +4,9 @@ import {
   SmileIcon,
   StethoscopeIcon,
   SunIcon,
-  SendHorizonal,
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { Button } from "./button";
+import SendBtn from "./button";
 import { useEffect, useRef, useState } from "react";
 import { chat } from "@/actions/chat";
 import { readStreamableValue } from "@ai-sdk/rsc";
@@ -117,7 +116,9 @@ const Chatbot = () => {
         {!hasStartedChat ? (
           <div className="flex flex-col justify-end h-full space-y-8">
             <div className="text-center space-y-4">
-              <h1 className="text-4xl font-semibold">Hello there 👋</h1>
+              <h1 className="text-4xl font-semibold text-white">
+                Hello there 👋
+              </h1>
               <h2 className="text-xl text-muted-foreground">
                 What I can help you with
               </h2>
@@ -131,7 +132,7 @@ const Chatbot = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.2, delay: index * 0.1 }}
-                    className="flex items-center gap-3 p-4 text-left border rounded-xl hover:bg-muted transition-all text-sm cursor-pointer hover:scale-95"
+                    className="flex items-center gap-3 p-4 text-left border border-0.5 border-muted-foreground rounded-xl bg-primary text-white hover:bg-muted hover:text-muted-foreground transition-all text-sm cursor-pointer hover:scale-95"
                     onClick={() => handlePromptClick(prompt.text)}
                   >
                     {prompt.icon}
@@ -164,9 +165,10 @@ const Chatbot = () => {
                 })}
               >
                 <div
-                  className={cn("max-w-[80% rounded-xl px-4 py-2", {
-                    "bg-foreground text-background": message.role === "user",
-                    "bg-muted": message.role === "assistant",
+                  className={cn("max-w-[80%] rounded-xl px-4 py-2", {
+                    "bg-[var(--chat-user)] rounded-br-none":
+                      message.role === "user",
+                    "bg-muted rounded-bl-none": message.role === "assistant",
                   })}
                 >
                   {message.role === "assistant" ? (
@@ -191,20 +193,20 @@ const Chatbot = () => {
           position: hasStartedChat ? "fixed" : "relative",
         }}
         transition={{ duration: 0.2 }}
-        className="w-full bg-gradient-to-t from-white via-white to-transparent pb-4 pt-6 bottom-0 mt-auto"
+        className="w-full bg-gradient-to-b from-transparent to-background pb-4 pt-6 bottom-0 mt-auto"
       >
         <div className="max-w-3xl mx-auto px-4">
           <motion.div
             initial={{ height: "auto" }}
             whileFocus={{ scale: 1.01 }}
             transition={{ duration: 0.2 }}
-            className="relative border rounded-2xl lg:rounded-3xl p-2.5 flex items-end gap-2 bg-background"
+            className="relative border border-muted-foreground rounded-2xl lg:rounded-3xl p-2.5 flex items-end gap-2 bg-primary"
           >
             <div
               contentEditable
               role="textbox"
               data-placeholder="Type your message..."
-              className="cursor-text flex-1 min-h-[36px] overflow-y-auto px-3 py-2 focus:outline-none text-sm bg-background rounded-md empty:before:text-muted-foreground empty:before:content-[attr(data-placeholder)] whitespace-pre-wrap break-words"
+              className="cursor-text text-white flex-1 min-h-[36px] overflow-y-auto px-3 py-2 focus:outline-none text-sm bg-primary rounded-md empty:before:text-muted-foreground empty:before:content-[attr(data-placeholder)] whitespace-pre-wrap break-words"
               onInput={(e) => setInput(e.currentTarget.textContent || "")}
               onKeyDown={(e) => {
                 if (e.key === "Enter" && !e.shiftKey) {
@@ -219,12 +221,9 @@ const Chatbot = () => {
                 }
               }}
             />
-            <Button
-              size="icon"
-              className="rounded-full shrink-0 mb-0.5 bg-foreground"
-            >
-              <SendHorizonal className="size-8" strokeWidth={2} />
-            </Button>
+            <div onClick={handleSent}>
+              <SendBtn />
+            </div>
           </motion.div>
         </div>
       </motion.div>
