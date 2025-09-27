@@ -44,7 +44,7 @@ const eggVariants = {
 const LoadingUI = () => {
   return (
     <>
-      <div className="w-full h-screen flex flex-col gap-8 items-center justify-center">
+      <div className="w-full h-screen flex flex-col gap-8 items-center justify-center ">
         <motion.div
           variants={containerVarients}
           initial="hidden"
