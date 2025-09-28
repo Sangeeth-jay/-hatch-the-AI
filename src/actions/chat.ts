@@ -10,7 +10,7 @@ export const chat = async (history: Message[]) => {
 
     (async () => {
         const { textStream } = streamText({
-            model: gemini("gemini-1.5-flash"),
+            model: gemini("gemini-2.5-flash"),
             messages: history,
         });
 
