@@ -75,6 +75,7 @@ const LoginPage = () => {
                 loading={loading}
               />
             </form>
+            {error && <p className="text-red-600 mt-2">{error}</p>}
           </div>
         </div>
       </section>

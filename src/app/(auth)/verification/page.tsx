@@ -4,13 +4,51 @@ import Image from "next/image";
 import React, { useState } from "react";
 import logo from "@/assessts/hatch 1.png";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const OTP = () => {
-  const [isResentLoad, setIsResentLoad] = useState<boolean>(false);
+  const searchParams = useSearchParams();
+  const email = searchParams.get("email");
+  const [otpDigits, setOtpDigits] = useState<string[]>(Array(4).fill(""));
+  const [error, setError] = useState<string>("");
+  const router = useRouter();
 
-  const handleVerifyBtn = () => {
-    setIsResentLoad(true);
-  };
+  function handleChange(value: string, index: number) {
+    if (!/^\d?$/.test(value)) return;
+
+    const newOtp = [...otpDigits];
+    newOtp[index] = value;
+    setOtpDigits(newOtp);
+
+    if (value && index < 3) {
+      const nextInput = document.getElementById(`otp-${index + 1}`);
+      (nextInput as HTMLInputElement)?.focus();
+    }
+  }
+
+  async function handleVerifyBtn() {
+    const otp = otpDigits.join("");
+    setError("");
+
+    try {
+      const res = await fetch("/api/verify-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, otp }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Verification Faild");
+
+      router.push("/dashboard");
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Something went wrong");
+      }
+    }
+  }
 
   return (
     <>
@@ -23,63 +61,33 @@ const OTP = () => {
           </div>
           <div className="flex flex-col items-center gap-2 my-2">
             <div className="flex flex-row gap-2">
-              <input
-                maxLength={1}
-                spellCheck={false}
-                inputMode="numeric"
-                type="tel"
-                pattern="[0-9]*"
-                name="digit"
-                id=""
-                placeholder="*"
-                required
-                className="py-2 px-4 h-10 w-10 bg-background rounded-lg outline-none focus:ring-1 focus:ring-green-800 "
-              />{" "}
-              <input
-                maxLength={1}
-                spellCheck={false}
-                inputMode="numeric"
-                type="tel"
-                pattern="[0-9]*"
-                name="digit"
-                id=""
-                placeholder="*"
-                required
-                className="py-2 px-4 h-10 w-10 bg-background rounded-lg outline-none focus:ring-1 focus:ring-green-800 "
-              />{" "}
-              <input
-                maxLength={1}
-                spellCheck={false}
-                inputMode="numeric"
-                type="tel"
-                pattern="[0-9]*"
-                name="digit"
-                id=""
-                placeholder="*"
-                required
-                className="py-2 px-4 h-10 w-10 bg-background rounded-lg outline-none focus:ring-1 focus:ring-green-800 "
-              />{" "}
-              <input
-                maxLength={1}
-                spellCheck={false}
-                inputMode="numeric"
-                type="tel"
-                pattern="[0-9]*"
-                name="digit"
-                id=""
-                placeholder="*"
-                required
-                className="py-2 px-4 h-10 w-10 bg-background rounded-lg outline-none focus:ring-1 focus:ring-green-800 "
-              />
+              {otpDigits.map((digit, idx) => (
+                <input
+                  type="tel"
+                  key={idx}
+                  id={`otp-${idx}`}
+                  maxLength={1}
+                  placeholder="*"
+                  value={digit}
+                  onChange={(e) => handleChange(e.target.value, idx)}
+                  className="py-2 px-4 h-10 w-10 text-center bg-background rounded-lg outline-none focus:ring-1 focus:ring-green-800"
+                />
+              ))}
             </div>
-            {isResentLoad && <p className="text-xs">Resend OTP</p>}
+            <p className="text-xs">Resend OTP</p>
             <div onClick={handleVerifyBtn} className="w-full text-center">
               <Button2 width="w-11/12" height="h-10" text="Verify" />
             </div>
+            {error && <p className="text-xs text-red-500">{error}</p>}
             <p className="text-xs text-muted-foreground">
               {" "}
               Did you enter the correct email?{" "}
-              <Link href="/login" className="text-[var(--cgreen-2)] font-medium">Login</Link>
+              <Link
+                href="/login"
+                className="text-[var(--cgreen-2)] font-medium"
+              >
+                Login
+              </Link>
             </p>
           </div>
         </div>
